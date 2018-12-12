@@ -15,39 +15,9 @@
 
 <script>
 import { useData, useState, useEffect } from "vue-hooks";
-/**
- * rxjs hooks
- * Reference: git@github.com:LeetCode-OpenSource/rxjs-hooks.git
- */
-import { from, Subject, BehaviorSubject } from "rxjs";
-
-function useEventCallback(callback, initialState) {
-  const [returnedCallback, setEventCallback] = useState(() => null);
-  const [state, setState] = useState(initialState);
-  const [state$] = useState(new BehaviorSubject(initialState));
-
-  useEffect(() => {
-    const event$ = new Subject();
-    setState(initialState);
-    setEventCallback(e => event$.next(e));
-    let value$ = callback(event$, state$);
-    const subscription = value$.subscribe(value => {
-      state$.next(value);
-      setState(value);
-    });
-    return () => {
-      subscription.unsubscribe();
-      event$.complete();
-      state$.complete();
-    };
-  }, []);
-
-  return [returnedCallback, state];
-}
-
-// rxjs hooks end
-
+import { from } from "rxjs";
 import { switchMap, map, withLatestFrom } from "rxjs/operators";
+import { useEventCallback } from '../rxjs-hooks';
 
 export default {
   name: "hello",
