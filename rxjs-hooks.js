@@ -3,7 +3,8 @@
  * Reference: git@github.com:LeetCode-OpenSource/rxjs-hooks.git
  */
 import { from, Subject, BehaviorSubject } from "rxjs";
-function useEventCallback(callback, initialState) {
+
+export function useEventCallback(callback, initialState) {
   const [returnedCallback, setEventCallback] = useState(() => null);
   const [state, setState] = useState(initialState);
   const [state$] = useState(new BehaviorSubject(initialState));
