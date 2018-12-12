@@ -14,18 +14,13 @@
 </template>
 
 <script>
-import { useData, useState, useEffect } from "vue-hooks";
 import { from } from "rxjs";
 import { switchMap, map, withLatestFrom } from "rxjs/operators";
-import { useEventCallback } from '../rxjs-hooks';
+import { useEventCallback } from "../rxjs-hooks";
 
 export default {
   name: "hello",
   hooks() {
-    const data = useData({
-      count: 0
-    });
-
     let [countCallback, count] = useEventCallback((event$, state$) => {
       return event$.pipe(
         withLatestFrom(state$),
@@ -42,7 +37,6 @@ export default {
     }, 0);
 
     return {
-      data,
       callback,
       eventCallbackCount,
       countCallback,
