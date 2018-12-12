@@ -1,0 +1,13 @@
+{
+  "name": "play-vue-hooks",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "index.js",
+  "dependencies": {
+    "rxjs": "6.3.3",
+    "vue": "2.5.2",
+    "vue-hooks": "0.3.1",
+    "vue-router": "3.0.1"
+  }
+}
